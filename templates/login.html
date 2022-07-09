@@ -1,0 +1,20 @@
+{% extends 'common.html' %}
+{% block content %}
+<h1>{% block title %}{{message}}{% endblock %}</h1>
+<form action="/validateuser" method="post" id="regtable1" name="loginform" onsubmit="validatelogin()">
+    <table id="regtable2">
+        <tr>
+            <td><input type="email" name="email1" placeholder="Enter ur Email" id="email1" onblur="validateLoginEmail()"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="password" name="password1" placeholder="Enter ur Password" id="password1" onblur="validateloginPassword()"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" value="Login"></td>
+        </tr>
+    </table>
+</form> 
+<p id="clickregister"> Already Registered? <a href="/newuser">Register Here</a></p>
+{% endblock %}

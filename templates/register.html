@@ -1,0 +1,26 @@
+{% extends 'common.html'%}
+{% block content %}
+<h1>{% block title%}Register Here{% endblock %}</h1>
+<form action="/registeruser" method="post" id="regtable1" name="registrationform" onsubmit="validateall()">
+    <table id="regtable2">
+        <tr>
+            <td><input type="text" name="username" placeholder="Enter ur Name" id="username" onblur= "validateUserName()"></td>
+        </tr>
+        <tr>
+            <td><p id="errorname"></p></td>
+        </tr>
+        <tr>
+            <td><input type="password" name="password" placeholder="Enter ur Password" id="password" onblur="validatePassword()"></td>
+        </tr>
+        <tr>
+            <td><input type="email" name="email" placeholder="Enter ur Email" id="email"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="location" placeholder="Enter ur Location" id="location"  title="accepts only alphabets"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Register"></td>
+        </tr>
+    </table>
+</form> 
+{% endblock %}
