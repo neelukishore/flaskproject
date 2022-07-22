@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <h1>Add book</h1>
+        <form method="post" action="/create">
+            <input type="text" name="title">
+            <input type="submit" value="add">
+        </form>
+        <h1>books</h1>
+        {% for book in books %}
+            <p>{{ book.title }}</p>
+            <form method="post" action="/update">
+                <input type="hidden" name="title" value="{{ book.title }}">
+                <input type="submit" value="Update">
+            </form>
+            <form method="post" action="/delete">
+                <input type="hidden" name="title" value="{{ book.title }}">
+                <input type="submit" value="delete">
+            </form>    
+        {% endfor %}    
+    </body>
+</html>
