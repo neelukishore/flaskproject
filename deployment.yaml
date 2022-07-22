@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pythn-webapp
+  name: deploy-webapp
   labels:
     app: web
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -16,7 +16,19 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: riyan0622/flaskapp:v1
+        image: riyan0622/flaskapp:v2
         ports:
         - containerPort: 5000
-
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: password
+      restartPolicy: Always
+           

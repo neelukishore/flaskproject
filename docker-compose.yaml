@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  dev-postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=books
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  my-app:
+    build: .
+    image: library-app:1.0
+    ports:
+      - 5000:5000  
+
+                          
+
+volumes:
+   pgdata:

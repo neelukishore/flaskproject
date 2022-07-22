@@ -3,29 +3,26 @@ from flask import Flask, redirect
 from flask import render_template
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
-
 import os
 #from models import Book
 
 
 
 
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = 'sqlite:///{}'.format(os.path.join(project_dir, "books.db"))
+# project_dir = os.path.dirname(os.path.abspath(__file__))
+# database_file = 'sqlite:///{}'.format(os.path.join(project_dir, "books.db"))
 
 
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres@dev-postgres:5432/books"
 db = SQLAlchemy(app)
 
 
 # from models import Book
 class Book(db.Model):
     title = db.Column(db.String(100), unique=True, nullable=False, primary_key=True)
-
-    
 
     def __repr__(self):
         return "<Title: {}>".format(self.title)
@@ -79,5 +76,5 @@ def delete():
 
 
 if __name__ == '__main__':
-    db.create_all()
+    # db.create_all()
     app.run(debug=True)
